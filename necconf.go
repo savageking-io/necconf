@@ -8,6 +8,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// Config struct
 type Config struct {
 	configDirectory string
 }
