@@ -4,3 +4,4 @@
 
 - Logging and basic configuration reading
 - Initial tests
+- Utility function to extract directory and filename
