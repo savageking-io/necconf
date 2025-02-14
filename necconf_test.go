@@ -1,12 +1,14 @@
 package necconf
 
 import (
+	log "github.com/sirupsen/logrus"
 	"io/fs"
 	"testing"
 	"testing/fstest"
 )
 
 func TestConfig_Init(t *testing.T) {
+	log.SetLevel(log.TraceLevel)
 	type fields struct {
 		configDirectory string
 	}
