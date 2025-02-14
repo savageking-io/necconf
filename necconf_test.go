@@ -36,17 +36,20 @@ func TestConfig_Init(t *testing.T) {
 	}
 }
 
+type TestStruct struct {
+	Data string `yaml:"data"`
+}
+
 func TestConfig_ReadConfig(t *testing.T) {
-	conf0 := struct {
-		Data string `yaml:"data"`
-	}{}
+	log.SetLevel(log.TraceLevel)
+	conf0 := new(TestStruct)
 
 	mockFS := fstest.MapFS{
 		"broken.yaml": {
 			Data: []byte("```"),
 		},
 		"config.yaml": {
-			Data: []byte("---\ndata: test"),
+			Data: []byte("data: test"),
 		},
 	}
 
@@ -79,6 +82,8 @@ func TestConfig_ReadConfig(t *testing.T) {
 			}
 			if err := c.ReadConfig(tt.args.fsys, tt.args.filename, tt.args.conf); (err != nil) != tt.wantErr {
 				t.Errorf("Config.ReadConfig() error = %v, wantErr %v", err, tt.wantErr)
+			} else {
+				t.Logf("Config.ReadConfig() = %+v", conf0)
 			}
 		})
 	}

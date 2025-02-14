@@ -53,7 +53,9 @@ func (c *Config) ReadConfig(fsys fs.FS, filename string, conf interface{}) error
 		return fmt.Errorf("failed to read config: %s", err.Error())
 	}
 
-	err = yaml.Unmarshal(content, &conf)
+	log.Debugf("necconf::ReadConfig: content: %s", string(content))
+
+	err = yaml.Unmarshal(content, conf)
 	if err != nil {
 		return fmt.Errorf("failed to unmarshal config: %s", err.Error())
 	}
