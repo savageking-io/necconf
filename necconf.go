@@ -29,6 +29,9 @@ func (c *Config) Init(configDirectory string) error {
 func (c *Config) ReadConfig(fsys fs.FS, filename string, conf interface{}) error {
 	log.Traceln("necconf::ReadConfig")
 
+	log.Debugf("necconf::ReadConfig: fsys: %+v", fsys)
+	log.Debugf("necconf::ReadConfig: filename: %s", filename)
+
 	if c.configDirectory == "" {
 		return fmt.Errorf("config directory is empty: not initialized")
 	}
